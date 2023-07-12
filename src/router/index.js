@@ -4,13 +4,24 @@ import Login from '../components/Login.vue'
 //导入全局样式表
 import '../assets/css/global.css'
 import Home from '../components/Home.vue'
+import Welcome from '../components/Welcome.vue'
+import Users from '../components/user/Users.vue'
+
 Vue.use(Router)
 
 const router = new Router({
   routes: [
     {path:'/',redirect:'/login'},
     {path: '/login',component: Login},
-    {path: '/home',component:Home}
+    {
+      path: '/home',
+      component:Home,
+      redirect:'/welcome',
+      children:[
+        {path:'/welcome',component:Welcome},
+        {path:'/users',component:Users}
+      ]
+    }
   ]
 })
 //挂载路由导航守卫
